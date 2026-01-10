@@ -1,0 +1,15 @@
+poligon:
+  target: dev
+  outputs:
+    dev:
+      type: clickhouse
+      driver: http
+      host: "{{ env_var('CLICKHOUSE_HOST') }}"
+      port: "{{ env_var('CLICKHOUSE_PORT') | as_number }}"  #| as_number — преобразует строку "8123" в число 8123
+      user: "{{ env_var('CLICKHOUSE_USERNAME') }}"
+      password: "{{ env_var('CLICKHOUSE_PASSWORD') }}"
+      database: "{{ env_var('CLICKHOUSE_DATABASE') }}"
+      schema: "{{ env_var('CLICKHOUSE_RAW_DATA_SCHEMA') }}"
+      secure: false  # Если ClickHouse настроен на SSL, то нужно указать true, иначе false
+
+#env_var(...) — функция dbt для загрузки переменных окружения из .env
